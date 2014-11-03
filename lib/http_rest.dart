@@ -116,7 +116,10 @@ class HttpRest implements Rest {
 
     // populate the request response object with data
     request.response
-      ..statusCode = _live_response.code
+      ..statusCode = _live_response.code;
+    if(_live_response.headers != null) request.response
+      ..headers = _live_response.headers;
+    request.response
       ..write(_live_response.body != null ? _live_response.body : '')
       ..close();
   }
